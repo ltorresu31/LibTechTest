@@ -1,0 +1,76 @@
+<div style="padding-right: 5%; padding-left: 5%; ">
+  <div class="card" style="width: 100%;margin-top: 2rem;background-color:#edf2f6;border-radius: 10px; height: 70em; " >
+    <div class="card-header"><b>Listado de usuarios</b></div>
+    <div class="card mb-4 mt-4">
+      <ul class="nav">
+        <button type="button" class="btn-toolbar">
+          <a class="nav-link text-toolbar" href="/user/card">
+						<span>
+							<svg width="20" height="17" viewBox="0 0 14 14" fill="none">
+								<path
+                  d="M11.6667 1H2.33333C1.59695 1 1 1.59695 1 2.33333V11.6667C1 12.403 1.59695 13 2.33333 13H11.6667C12.403 13 13 12.403 13 11.6667V2.33333C13 1.59695 12.403 1 11.6667 1Z"
+                  stroke="#38E8C6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+								<path d="M1 5H13" stroke="#38E8C6" stroke-linecap="round" stroke-linejoin="round" />
+								<path d="M5 13V5" stroke="#38E8C6" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</span>
+            Volver
+          </a>
+        </button>
+      </ul>
+    </div>
+    <div class="card-body">
+      <table datatable [dtOptions]="dtOptions" class="table table-bordered table-hover" width="100%"
+             *ngIf="showTable">
+        <thead class="table-dark">
+        <tr>
+          <th class="text-center">Nro. Documento</th>
+          <th class="text-center">Tipo de Documento</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">Apellido Paterno</th>
+          <th class="text-center">Apellido Materno</th>
+          <th class="text-center">Dirección</th>
+          <th class="text-center">Ubigeo</th>
+          <th class="text-center">Teléfono</th>
+          <th class="text-center">Email</th>
+          <th class="text-center">Contraseña</th>
+          <th class="text-center">Estado</th>
+          <th class="text-center all">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of items">
+          <td class="text-center">{{ item.documentNumber }}</td>
+          <td class="text-center">{{ item.documentTypeId }}</td>
+          <td class="text-center">{{ item.name }}</td>
+          <td class="text-center">{{ item.fathersLastName }}</td>
+          <td class="text-center">{{ item.mothersLastName }}</td>
+          <td class="text-center">{{ item.address }}</td>
+          <td class="text-center">{{ item.ubigeoCode }}</td>
+          <td class="text-center">{{ item.phone }}</td>
+          <td class="text-center">{{ item.email }}</td>
+          <td class="text-center">{{ item.password}}</td>
+          <td class="text-center">{{ item.active}}</td>
+          <td class="text-center">
+            <div class="btn-group" role="group" ngbDropdown>
+              <button id="btnGroupVerticalDrop1" ngbDropdownToggle type="button"
+                      class="btn btn-rounded btn-success ms-auto dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false">
+                <i class="mdi mdi-chevron-down"></i> Acciones
+              </button>
+              <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="btnGroupVerticalDrop1">
+                <a class="dropdown-item pointer" [routerLink]="['/user/update', item.documentNumber]">  Actualizar</a>
+                <button class="dropdown-item pointer" (click)="delete(item.documentNumber)" *ngIf="item.active == 1"> Anular </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

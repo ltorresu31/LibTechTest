@@ -1,0 +1,11 @@
+version: "1.0"
+ 
+services:
+  sql:
+    image: dockerfile
+    container_name: database-sql-test-cli
+    ports:
+    - 127.0.0.1:1440:1433
+    environment:
+    - SA_PASSWORD=.Nv3rrefg049jsKK.
+    
